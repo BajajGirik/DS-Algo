@@ -1,8 +1,8 @@
-#include <typesq1.h>
+#include "types.h"
 
 int main() {
 	clock_t start = clock();
-	file_i_o();
+	// file_i_o();
 
 	Easy e1, e2;
 	e1.input_data();
@@ -18,5 +18,7 @@ int main() {
 	else cout << "e1 is equal to e2" << endl;
 
 	clock_t end = clock();
-	cout << "\n\nExecuted in: " << (double)(end - start) / double(CLOCKS_PER_SEC) << " sec";
+	cout << "\n\nExecuted in: " << (double)(end - start) / double(CLOCKS_PER_SEC) << " sec\n";
+
+	return 0;
 }

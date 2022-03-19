@@ -1,4 +1,4 @@
-#include "myheader.h"
+#include "../../myheader.h"
 
 struct Easy {
 	string name, address;
