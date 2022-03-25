@@ -28,60 +28,49 @@ void file_i_o() {
 #endif
 }
 
-char negateCh(char ch) {
-	if(ch == '(')
-		return ')';
+ll sum = 0, total_paths = 0;
+unordered_map<ll, vector<ll>> m;
 
-	return '(';
-}
-
-bool palindrome(string s, ll start, ll end) {
-	if(start == end)
-		return false;
-
-	ll j = end;
-	for(ll i = start; i < j; ++i) {
-		if(s[i] != s[j])
-			return false;
-		--j;
+void all_paths(ll root) {
+	if(m.find(root) == m.end()) {
+		++total_paths;
+		return;
 	}
 
-	return true;
+	for(auto x : m[root]) {
+		++sum;
+		all_paths(x);
+	}
 }
+
 
 void solve() {
-	ll n, count = 0, removed_index = 0;
-	string s;
-	char first = '(';
+	ll n;
 	cin >> n;
-	cin >> s;
 
-	stack<char> regular;
-
-	loop(i,0,n) {
-		if(!regular.empty() and first != ')' and regular.top() == negateCh(s[i])) {
-			regular.pop();
-		} else {
-			regular.push(s[i]);
-			if (regular.size() == 1)
-				first = s[i];
-		}
-
-		if(regular.empty() or (i!=removed_index and s[i] == first)) {
-			++count;
-			removed_index = i+1;
-			regular = stack<char>();
+	loop(i, 0, n-1) {
+		ll temp1, temp2;
+		cin >> temp1 >> temp2;
+		if(m.find(temp1) != m.end())
+			m[temp1].pb(temp2);
+		else {
+			vector<ll> v;
+			v.pb(temp2);
+			m[temp1] = v;
 		}
 	}
 
-	cout << count << " " << n-removed_index << endl;
+	all_paths(1);
+	double ans = (double)sum / total_paths;
+
+	cout << ans << endl;
 }
 
 int main () {
 	clock_t start = clock();
 	file_i_o();
 	ll T=1;
-	cin >> T;
+	// cin >> T;
 	while (T--) {
 		solve();
 	}

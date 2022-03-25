@@ -29,35 +29,39 @@ void file_i_o() {
 }
 
 void solve() {
-	ll x, y;
-	cin >> x >> y;
-	if(x== 0 && y == 0) {
-		cout << "0" << endl;
-		return;
+	int n;
+	cin >> n;
+
+	int last = -1, ans = 0;
+	bool flag = true;
+	loop(i, 0, n) {
+		int temp;
+		cin >> temp;
+		if(temp != last) {
+			last = temp;
+			++ans;
+			flag = true;
+		} else if (flag) {
+			++ans;
+			flag = false;
+		}
 	}
 
-	ll dist = x*x + y*y;
-	ll sr = sqrt(dist);
-	
-	if(sr*sr == dist) {
-		cout << "1" << endl;
-	} else {
-		cout << "2" << endl;
-	}
+	cout << ans << endl;
 }
 
 int main () {
-	clock_t start = clock();
-	file_i_o();
+	// clock_t start = clock();
+	// file_i_o();
 	ll T=1;
-	cin >> T;
+	// cin >> T;
 	while (T--) {
 		solve();
 	}
-	#ifndef ONLINE_JUDGE
-		clock_t end = clock();
-		cout << "\n\nExecuted in: " << (double)(end - start) / double(CLOCKS_PER_SEC)
-		<< " sec";
-	#endif
+	// #ifndef ONLINE_JUDGE
+	// 	clock_t end = clock();
+	// 	cout << "\n\nExecuted in: " << (double)(end - start) / double(CLOCKS_PER_SEC)
+	// 	<< " sec";
+	// #endif
 	return 0;
 }
