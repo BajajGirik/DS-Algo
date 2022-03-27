@@ -1,0 +1,32 @@
+---------Sorting Analysis---------
+
+------------------------------
+Insertion Sort Analysis (For array of size 11):
+No. of comparisons: 38
+No. of swaps: 38
+Execution Time: 4e-06sec
+
+------------------------------
+
+------------------------------
+Selection Sort Analysis (For array of size 11):
+No. of comparisons: 55
+No. of swaps: 11
+Execution Time: 4e-06sec
+
+------------------------------
+
+------------------------------
+Bubble Sort Analysis (For array of size 11):
+No. of comparisons: 55
+No. of swaps: 17
+Execution Time: 3e-06sec
+
+------------------------------
+11
+
+------------------------------
+Count Sort Analysis (For array of size 11):
+Execution Time: 1.1e-05sec
+
+------------------------------
