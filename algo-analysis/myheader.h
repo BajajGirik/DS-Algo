@@ -1,3 +1,5 @@
+#ifndef HEADER_H
+#define HEADER_H
 /******************************************************/
 #include <bits/stdc++.h>
 using namespace std;
@@ -19,10 +21,12 @@ using namespace std;
 #define ninf              LLONG_MIN
 /******************************************************/
 
-void file_i_o() {
-	ios_base::sync_with_stdio(false);
-	cin.tie(NULL); cout.tie(NULL);
-	freopen("input.txt","r", stdin);
-	freopen("output.txt","w", stdout);
-}
+void file_i_o() ;
+// {
+// 	ios_base::sync_with_stdio(false);
+// 	cin.tie(NULL); cout.tie(NULL);
+// 	freopen("input.txt","r", stdin);
+// 	freopen("output.txt","w", stdout);
+// }
 
+#endif // HEADER_H

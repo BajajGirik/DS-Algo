@@ -1,5 +1,18 @@
 {
 	"files.associations": {
-		"iostream": "cpp"
+		"iostream": "cpp",
+		"memory": "cpp",
+		"regex": "cpp",
+		"span": "cpp",
+		"utility": "cpp",
+		"type_traits": "cpp",
+		"array": "cpp",
+		"fstream": "cpp",
+		"future": "cpp",
+		"sstream": "cpp",
+		"tuple": "cpp",
+		"vector": "cpp",
+		"iosfwd": "cpp",
+		"iterator": "cpp"
 	}
 }
