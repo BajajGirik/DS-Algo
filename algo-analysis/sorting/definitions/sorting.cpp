@@ -1,14 +1,14 @@
-#include "sorting.h"
+#include "../headers/sorting.h"
 
 void file_i_o() {
 	ios_base::sync_with_stdio(false);
 	cin.tie(NULL); cout.tie(NULL);
-	freopen("input.txt","r", stdin);
-	freopen("output.txt","w", stdout);
+	freopen("IO/input.txt","r", stdin);
+	freopen("IO/output.txt","w", stdout);
 }
 
-vector<ll> input_data() {
-	vector<ll> v;
+vi input_data() {
+	vi v;
 	
 	ll temp;
 	while(cin >> temp) {
@@ -18,7 +18,7 @@ vector<ll> input_data() {
 	return v;
 }
 
-void print_data(vector<ll> arr) {
+void print_data(vi arr) {
 	cout << "Array contents: " << endl;
 	for(auto x: arr) {
 		cout << x << " ";
@@ -26,7 +26,7 @@ void print_data(vector<ll> arr) {
 	cout << endl;
 }
 
-void bubble_sort(vector<ll> arr) {
+void bubble_sort(vi arr) {
 	clock_t start = clock();
 	ll comparisons = 0, swaps = 0;
 
@@ -51,7 +51,7 @@ void bubble_sort(vector<ll> arr) {
 	cout << "------------------------------" << endl;
 }
 
-void insertion_sort(vector<ll> arr) {
+void insertion_sort(vi arr) {
 	clock_t start = clock();
 	ll comparisons = 0, swaps = 0;
 
@@ -77,7 +77,7 @@ void insertion_sort(vector<ll> arr) {
 	cout << "------------------------------" << endl;
 }
 
-void selection_sort(vector<ll> arr) {
+void selection_sort(vi arr) {
 	clock_t start = clock();
 	ll comparisons = 0, swaps = 0;
 
@@ -105,8 +105,8 @@ void selection_sort(vector<ll> arr) {
 }
 
 
-vector<ll> min_max_in_arr(vector<ll> arr) {
-	vector<ll> v(2, arr[0]);
+vi min_max_in_arr(vi arr) {
+	vi v(2, arr[0]);
 	
 	loop(i, 0, arr.size()) {
 		if(v[0] > arr[i])
@@ -119,7 +119,7 @@ vector<ll> min_max_in_arr(vector<ll> arr) {
 	return v;
 }
 
-void count_sort(vector<ll> arr) {
+void count_sort(vi arr) {
 	clock_t start = clock();
 
 	auto min_max = min_max_in_arr(arr);
@@ -144,7 +144,7 @@ void count_sort(vector<ll> arr) {
 	cout << "------------------------------" << endl;
 }
 
-vi quick_sort_partition(vector<ll> &arr, ll low, ll high) {
+vi quick_sort_partition(vi &arr, ll low, ll high) {
 	ll swaps = 0, comparisons = 0;
 	ll pivot = arr[high];
 
@@ -159,7 +159,7 @@ vi quick_sort_partition(vector<ll> &arr, ll low, ll high) {
 
 	swap(arr[j+1], arr[high]);
 
-	vector<ll> v;
+	vi v;
 	v.pb(j+1);
 	v.pb(swaps);
 	v.pb(comparisons);
@@ -167,7 +167,7 @@ vi quick_sort_partition(vector<ll> &arr, ll low, ll high) {
 	return v;
 }
 
-vi quick_sort(vector<ll> arr, ll low, ll high) {
+vi quick_sort(vi arr, ll low, ll high) {
     vi res;
 	res.pb(0);
 	res.pb(0);
@@ -185,7 +185,7 @@ vi quick_sort(vector<ll> arr, ll low, ll high) {
 	return res;
 }
 
-void quick_sort_analysis(vector<ll> arr, ll low, ll high) {
+void quick_sort_analysis(vi arr, ll low, ll high) {
 	clock_t start = clock();
 
 	auto res = quick_sort(arr, low, high);
@@ -197,16 +197,4 @@ void quick_sort_analysis(vector<ll> arr, ll low, ll high) {
 	cout << "No. of swaps: " << res[0] << endl;
 	cout << "Execution Time: " << (double)(end-start)/ CLOCKS_PER_SEC << "sec" << endl << endl;
 	cout << "------------------------------" << endl;
-}
-
-ll get_largest_kth_element(vi arr, ll k, ll start, ll end) {
-	auto par = quick_sort_partition(arr, start, end);
-
-	if(k == par[0] + 1)
-		return arr[k];
-
-	if(k > par[0] + 1) 
-		return get_largest_kth_element(arr, k - 1 - par[0], par[0] + 1, end);
-
-	return get_largest_kth_element(arr, k, start, par[0] - 1);
 }
