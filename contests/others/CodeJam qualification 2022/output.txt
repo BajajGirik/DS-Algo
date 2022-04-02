@@ -1,0 +1,7 @@
+Case #1: 4
+Case #2: 5
+Case #3: 9
+Case #4: 1
+
+
+Executed in: 0.000445 sec
