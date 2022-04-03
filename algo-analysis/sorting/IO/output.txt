@@ -1,1 +1,67 @@
-4th Largest element: 7
+---------Sorting Analysis---------
+
+------------------------------
+Insertion Sort Analysis (For array of size 11):
+No. of comparisons: 38
+No. of swaps: 38
+Execution Time: 5e-06sec
+
+------------------------------
+
+------------------------------
+Selection Sort Analysis (For array of size 11):
+No. of comparisons: 55
+No. of swaps: 11
+Execution Time: 3e-06sec
+
+------------------------------
+
+------------------------------
+Bubble Sort Analysis (For array of size 11):
+No. of comparisons: 55
+No. of swaps: 17
+Execution Time: 3e-06sec
+
+------------------------------
+
+------------------------------
+Count Sort Analysis (For array of size 11):
+Execution Time: 1e-05sec
+
+------------------------------
+
+------------------------------
+Quick Sort Analysis (For array of size 11):
+No. of comparisons: 10
+No. of swaps: 3
+Execution Time: 3.8e-05sec
+
+------------------------------
+9 + 2 11
+8 + 3 11
+12 + 2 14
+11 + 2 13
+15 + 2 17
+13 + 2 15
+18 + 2 20
+15 + 2 17
+21 + 2 23
+17 + 2 19
+24 + 1 25
+19 + 1 20
+26 + 2 28
+20 + 2 22
+29 + 1 30
+22 + 1 23
+31 + 1 32
+23 + 1 24
+33 + 0 33
+24 + 0 24
+
+------------------------------
+Heap Sort Analysis (For array of size 11):
+No. of comparisons: 24
+No. of swaps: 33
+Execution Time: 7.3e-05sec
+
+------------------------------

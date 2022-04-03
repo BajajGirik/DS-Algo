@@ -1,33 +1,7 @@
 #include "../headers/sorting.h"
+#include "../headers/utils.h"
 
-void file_i_o() {
-	ios_base::sync_with_stdio(false);
-	cin.tie(NULL); cout.tie(NULL);
-	freopen("IO/input.txt","r", stdin);
-	freopen("IO/output.txt","w", stdout);
-}
-
-vi input_data() {
-	vi v;
-	
-	ll temp;
-	while(cin >> temp) {
-		v.pb(temp);
-	}
-
-	return v;
-}
-
-void print_data(vi arr) {
-	cout << "Array contents: " << endl;
-	for(auto x: arr) {
-		cout << x << " ";
-	}
-	cout << endl;
-}
-
-void bubble_sort(vi arr) {
-	clock_t start = clock();
+vi bubble_sort(vi arr) {
 	ll comparisons = 0, swaps = 0;
 
 	loop(i, 0, arr.size()) {
@@ -41,18 +15,10 @@ void bubble_sort(vi arr) {
 		}
 	}
 
-	clock_t end = clock();
-
-	cout << endl << "------------------------------" << endl;
-	cout << "Bubble Sort Analysis (For array of size " << arr.size() << "):" << endl;
-	cout << "No. of comparisons: " << comparisons << endl;
-	cout << "No. of swaps: " << swaps << endl;
-	cout << "Execution Time: " << (double)(end-start)/ CLOCKS_PER_SEC << "sec" << endl << endl;
-	cout << "------------------------------" << endl;
+	return vi {comparisons, swaps};
 }
 
-void insertion_sort(vi arr) {
-	clock_t start = clock();
+vi insertion_sort(vi arr) {
 	ll comparisons = 0, swaps = 0;
 
 	loop(i, 0, arr.size()) {
@@ -67,18 +33,10 @@ void insertion_sort(vi arr) {
 		arr[j + 1] = value;
 	}
 
-	clock_t end = clock();
-
-	cout << endl << "------------------------------" << endl;
-	cout << "Insertion Sort Analysis (For array of size " << arr.size() << "):" << endl;
-	cout << "No. of comparisons: " << comparisons << endl;
-	cout << "No. of swaps: " << swaps << endl;
-	cout << "Execution Time: " << (double)(end-start)/ (double)CLOCKS_PER_SEC << "sec" << endl << endl;
-	cout << "------------------------------" << endl;
+	return vi {comparisons, swaps};
 }
 
-void selection_sort(vi arr) {
-	clock_t start = clock();
+vi selection_sort(vi arr) {
 	ll comparisons = 0, swaps = 0;
 
 	loop(i, 0, arr.size()) {
@@ -94,34 +52,10 @@ void selection_sort(vi arr) {
 		++swaps;
 	}
 
-	clock_t end = clock();
-
-	cout << endl << "------------------------------" << endl;
-	cout << "Selection Sort Analysis (For array of size " << arr.size() << "):" << endl;
-	cout << "No. of comparisons: " << comparisons << endl;
-	cout << "No. of swaps: " << swaps << endl;
-	cout << "Execution Time: " << (double)(end-start)/ CLOCKS_PER_SEC << "sec" << endl << endl;
-	cout << "------------------------------" << endl;
-}
-
-
-vi min_max_in_arr(vi arr) {
-	vi v(2, arr[0]);
-	
-	loop(i, 0, arr.size()) {
-		if(v[0] > arr[i])
-			v[0] = arr[i];
-
-		if(v[1] < arr[i])
-			v[1] = arr[i];
-	}
-
-	return v;
+	return vi {comparisons, swaps};
 }
 
 void count_sort(vi arr) {
-	clock_t start = clock();
-
 	auto min_max = min_max_in_arr(arr);
 	int count[min_max[1] - min_max[0] + 1] = {0};
 
@@ -136,12 +70,6 @@ void count_sort(vi arr) {
 			--count[i];
 		}
 	}
-
-	clock_t end = clock();
-	cout << endl << "------------------------------" << endl;
-	cout << "Count Sort Analysis (For array of size " << arr.size() << "):" << endl;
-	cout << "Execution Time: " << (double)(end-start)/ CLOCKS_PER_SEC << "sec" << endl << endl;
-	cout << "------------------------------" << endl;
 }
 
 vi quick_sort_partition(vi &arr, ll low, ll high) {
@@ -158,11 +86,10 @@ vi quick_sort_partition(vi &arr, ll low, ll high) {
 	}
 
 	swap(arr[j+1], arr[high]);
-
-	vi v;
-	v.pb(j+1);
-	v.pb(swaps);
-	v.pb(comparisons);
+	vi v(3);
+	v[0] = j+1;
+	v[1] = swaps;
+	v[2] = comparisons;
 
 	return v;
 }
@@ -185,16 +112,53 @@ vi quick_sort(vi arr, ll low, ll high) {
 	return res;
 }
 
-void quick_sort_analysis(vi arr, ll low, ll high) {
-	clock_t start = clock();
+vi heapify(vi &arr, ll index, ll stop) {
+	ll left_index = 2*index + 1;
+	ll right_index = 2*index + 2;
 
-	auto res = quick_sort(arr, low, high);
+	if(left_index > stop) {
+		return {0, 0};
+	}
 
-	clock_t end = clock();
-	cout << endl << "------------------------------" << endl;
-	cout << "Quick Sort Analysis (For array of size " << arr.size() << "):" << endl;
-	cout << "No. of comparisons: " << res[1] << endl;
-	cout << "No. of swaps: " << res[0] << endl;
-	cout << "Execution Time: " << (double)(end-start)/ CLOCKS_PER_SEC << "sec" << endl << endl;
-	cout << "------------------------------" << endl;
+	ll max_index;
+	
+	if(right_index <= stop and arr[left_index] > arr[right_index]) {
+		max_index = left_index;
+	} else {
+		max_index = right_index;
+	}
+
+	if(arr[index] < arr[max_index]) {
+		swap(arr[index], arr[max_index]);
+		auto last_details = heapify(arr, max_index, stop);
+		return {1 + last_details[0] , 1 + last_details[1]};
+	}
+
+	return {0, 1};
+}
+
+vi heap_sort(vi arr) {
+
+	// Heapify array elements to make max heap
+	ll start = arr.size() / 2 - 1;
+
+	ll comparisons = 0, swaps = 0;
+	while(start >= 0) {
+		auto details = heapify(arr, start, arr.size() - 1);
+		swaps += details[0];
+		comparisons += details[1];
+		--start;
+	}
+
+	// delete max element to make output array in sorted format
+	looprev(i, arr.size() - 1, 1) {
+		swap(arr[0], arr[i]);
+		++swaps;
+
+		auto details = heapify(arr, 0, i - 1);
+		swaps += details[0];
+		comparisons += details[1];
+	}
+
+	return {swaps, comparisons};
 }

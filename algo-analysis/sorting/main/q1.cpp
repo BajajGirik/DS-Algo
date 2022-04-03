@@ -1,4 +1,4 @@
-#include "sorting.h"
+#include "../headers/utils.h"
 
 int main() {
 	file_i_o();
@@ -7,11 +7,12 @@ int main() {
 
 	cout << "---------Sorting Analysis---------" << endl;
 
-	insertion_sort(v);
-	selection_sort(v);
-	bubble_sort(v);
-	count_sort(v);
-	quick_sort_analysis(v, 0, v.size()-1);
+	insertion_sort_analysis(v);
+	selection_sort_analysis(v);
+	bubble_sort_analysis(v);
+	count_sort_analysis(v);
+	quick_sort_analysis(v);
+	heap_sort_analysis(v);
 
 	return 0;
 }
