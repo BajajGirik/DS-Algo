@@ -94,11 +94,12 @@ void selection_sort_analysis(vi arr) {
 void count_sort_analysis(vi arr) {
 	clock_t start = clock();
 
-	count_sort(arr);
+	ll size = count_sort(arr);
 
 	clock_t end = clock();
 	cout << endl << "------------------------------" << endl;
 	cout << "Count Sort Analysis (For array of size " << arr.size() << "):" << endl;
+	cout << "Size of array(hash) used: " << size << endl;
 	cout << "Execution Time: " << (double)(end-start)/ CLOCKS_PER_SEC << "sec" << endl << endl;
 	cout << "------------------------------" << endl;
 }
@@ -127,6 +128,31 @@ void heap_sort_analysis(vi arr) {
 	cout << "Heap Sort Analysis (For array of size " << arr.size() << "):" << endl;
 	cout << "No. of comparisons: " << res[1] << endl;
 	cout << "No. of swaps: " << res[0] << endl;
+	cout << "Execution Time: " << (double)(end-start)/ CLOCKS_PER_SEC << "sec" << endl << endl;
+	cout << "------------------------------" << endl;
+}
+
+void bucket_sort_analysis(vi arr) {
+	clock_t start = clock();
+
+	ll bucket_count = bucket_sort(arr);
+
+	clock_t end = clock();
+	cout << endl << "------------------------------" << endl;
+	cout << "Bucket Sort Analysis (For array of size " << arr.size() << "):" << endl;
+	cout << "Number of buckets used: " << bucket_count << endl;
+	cout << "Execution Time: " << (double)(end-start)/ CLOCKS_PER_SEC << "sec" << endl << endl;
+	cout << "------------------------------" << endl;
+}
+
+void radix_sort_analysis(vi arr) {
+	clock_t start = clock();
+
+	radix_sort(arr);
+
+	clock_t end = clock();
+	cout << endl << "------------------------------" << endl;
+	cout << "Radix Sort Analysis (For array of size " << arr.size() << "):" << endl;
 	cout << "Execution Time: " << (double)(end-start)/ CLOCKS_PER_SEC << "sec" << endl << endl;
 	cout << "------------------------------" << endl;
 }

@@ -1,0 +1,28 @@
+Bucket 1 Array contents: 
+0 1 3 4 5 7 8 9 76 
+Bucket 2 Array contents: 
+183 
+Bucket 3 Array contents: 
+
+Bucket 4 Array contents: 
+
+Bucket 5 Array contents: 
+
+Bucket 6 Array contents: 
+
+Bucket 7 Array contents: 
+
+Bucket 8 Array contents: 
+
+Bucket 9 Array contents: 
+843 
+
+Array after sorting: 
+0 1 3 4 5 7 8 9 76 183 843 
+
+------------------------------
+Heap Sort Analysis (For array of size 11):
+Number of buckets used: 9
+Execution Time: 6e-05sec
+
+------------------------------

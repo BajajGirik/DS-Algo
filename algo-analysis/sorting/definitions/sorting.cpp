@@ -55,7 +55,7 @@ vi selection_sort(vi arr) {
 	return vi {comparisons, swaps};
 }
 
-void count_sort(vi arr) {
+ll count_sort(vi arr) {
 	auto min_max = min_max_in_arr(arr);
 	int count[min_max[1] - min_max[0] + 1] = {0};
 
@@ -70,6 +70,8 @@ void count_sort(vi arr) {
 			--count[i];
 		}
 	}
+
+	return min_max[1] - min_max[0] + 1;
 }
 
 vi quick_sort_partition(vi &arr, ll low, ll high) {
@@ -161,4 +163,60 @@ vi heap_sort(vi arr) {
 	}
 
 	return {swaps, comparisons};
+}
+
+ll bucket_sort(vi arr) {
+	auto min_max = min_max_in_arr(arr);
+
+	vvi buckets(min_max[1] / BUCKET_SIZE + 1);
+
+	for(auto i : arr) {
+		buckets[i/BUCKET_SIZE].pb(i);
+	}
+
+	ll j = 1;
+	for(auto & i : buckets) {
+		sort(all(i));
+		cout << "Bucket " << j << " ";
+	  	print_data(i);
+		++j;
+	}
+
+	cout << endl << "Array after sorting: " << endl;
+	for(auto i : buckets) {
+		for(auto j: i) {
+			cout << j << " ";
+		}
+	}
+
+	cout << endl;
+	return min_max[1] / BUCKET_SIZE + 1;
+}
+
+void make_buckets(vi & arr, ll exp) {
+	vvi buckets(10);
+
+	for(auto i: arr) {
+		ll temp = i;
+		temp /= exp;
+		buckets[temp % 10].pb(i);
+	}
+
+	ll k = 0;
+	for(auto i: buckets) {
+		for(auto j: i) {
+			arr[k++] = j;
+		}
+	}
+}
+
+void radix_sort(vi arr) {
+	auto min_max = min_max_in_arr(arr);
+
+	ll j = 1;
+	for(ll i = 1; min_max[1] / i > 0; i *= 10) {
+		cout << "Pass " << j << " ";
+		make_buckets(arr, i);
+		print_data(arr);
+	}
 }

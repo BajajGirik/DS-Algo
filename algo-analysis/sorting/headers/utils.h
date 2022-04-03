@@ -14,6 +14,7 @@ void selection_sort_analysis(vi);
 void count_sort_analysis(vi);
 void quick_sort_analysis(vi);
 void heap_sort_analysis(vi);
-
+void bucket_sort_analysis(vi);
+void radix_sort_analysis(vi);
 
 #endif

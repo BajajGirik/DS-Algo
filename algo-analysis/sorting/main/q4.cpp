@@ -4,7 +4,7 @@ void file_i_o() {
 	ios_base::sync_with_stdio(false);
 	cin.tie(NULL); cout.tie(NULL);
 	freopen("IO/input.txt","r", stdin);
-	freopen("IO/q3/output.txt","w", stdout);
+	freopen("IO/q4/output.txt","w", stdout);
 }
 
 int main() {
@@ -12,7 +12,7 @@ int main() {
 
 	auto v = input_data();
 
-	radix_sort_analysis(v);
+	bucket_sort_analysis(v);
 
 	return 0;
 }
