@@ -1,0 +1,11 @@
+Total elements in set: 3
+2 3 5 
+
+Total elements in set: 4
+7 8 9 10 
+
+Total elements in set: 7
+2 3 5 7 8 9 10 
+
+Value 7 present in the set
+Value 1 not present in the set

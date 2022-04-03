@@ -1,21 +1,5 @@
+#include "../../myheader.h"
 #include "../headers/linkedList.h"
-
-Node::Node() {
-	value = 0;
-	next = NULL;
-}
-
-Node::Node(ll x) {
-	Node* ptr = new Node;
-	ptr->value = x;
-	ptr->next = NULL;
-}
-
-Node::Node(ll x, Node* next_ptr) {
-	Node* ptr = new Node;
-	ptr->value = x;
-	ptr->next = next_ptr;
-}
 
 LinkedList::LinkedList() {
 	head = NULL;
@@ -43,13 +27,27 @@ bool LinkedList::search_node(ll value) {
 
 	while(temp != NULL) {
 		if(temp->value == value) {
+			cout << "Value " << value << " is present in the set" << endl;
 			return true;
 		}
 
 		temp = temp->next;
 	}
 
+	cout << "Value " << value << " is not present in the set" << endl;
 	return false;
+}
+
+void LinkedList::print_data() {
+	Node* temp = head;
+	cout << "Total elements in set: " << total_nodes << endl;
+
+	while(temp != NULL) {
+		cout << temp->value << " ";
+		temp = temp->next;
+	}
+
+	cout << endl << endl;
 }
 
 LinkedList LinkedList::operator+ (LinkedList const & list) {
@@ -57,16 +55,16 @@ LinkedList LinkedList::operator+ (LinkedList const & list) {
 	Node* final_list = NULL;
 
 	if(total_nodes > list.total_nodes) {
-		start_list = head;
-		final_list = list.head;
-	} else {
 		start_list = list.head;
 		final_list = head;
+	} else {
+		start_list = head;
+		final_list = list.head;
 	}
 
 	LinkedList result;
 
-	while(start_list->next != NULL) {
+	while(start_list != NULL) {
 		result.add_node(start_list->value);
 		start_list = start_list->next;
 	}

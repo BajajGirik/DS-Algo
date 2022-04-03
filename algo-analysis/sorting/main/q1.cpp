@@ -1,5 +1,12 @@
 #include "../headers/utils.h"
 
+void file_i_o() {
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL); cout.tie(NULL);
+	freopen("IO/q1/input.txt","r", stdin);
+	freopen("IO/q1/output.txt","w", stdout);
+}
+
 int main() {
 	file_i_o();
 

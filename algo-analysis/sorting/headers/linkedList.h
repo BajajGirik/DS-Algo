@@ -2,15 +2,7 @@
 #define LINKEDLIST_H
 
 #include "../../myheader.h"
-
-struct Node {
-	ll value;
-	Node* next;
-
-	Node();
-	Node(ll);
-	Node(ll, Node*);
-};
+#include "../headers/node.h"
 
 struct LinkedList {
 	Node *head, *tail;
@@ -19,6 +11,7 @@ struct LinkedList {
 	LinkedList();
 	void add_node(ll);
 	bool search_node(ll);
+	void print_data();
 	LinkedList operator+ (LinkedList const &);
 };
 
