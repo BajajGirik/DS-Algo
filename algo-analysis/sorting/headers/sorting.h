@@ -4,7 +4,6 @@
 
 #include "../../myheader.h"
 
-
 vi bubble_sort(vi);
 vi insertion_sort(vi);
 vi selection_sort(vi);

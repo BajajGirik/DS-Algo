@@ -1,8 +1,11 @@
 Total elements in the set: 3
 2 3 5 
+
 Total elements in the set: 4
 7 8 9 10 
+
 Total elements in the set: 7
 2 3 5 7 8 9 10 
+
 Value 2 is present
 Value 6 is not present

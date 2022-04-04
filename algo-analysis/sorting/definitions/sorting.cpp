@@ -78,8 +78,8 @@ vi quick_sort_partition(vi &arr, ll low, ll high) {
 	ll swaps = 0, comparisons = 0;
 	ll pivot = arr[high];
 
-	ll j = -1;
-	loop(i, 0, high) {
+	ll j = low-1;
+	loop(i, low, high) {
 		if(pivot >= arr[i]) {
 			swap(arr[++j], arr[i]);
 			++swaps;
@@ -218,5 +218,7 @@ void radix_sort(vi arr) {
 		cout << "Pass " << j << " ";
 		make_buckets(arr, i);
 		print_data(arr);
+		cout << endl;
+		++j;
 	}
 }

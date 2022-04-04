@@ -36,7 +36,7 @@ void Tree::print_data() {
 		cout << x << " ";
 	}
 
-	cout << endl;
+	cout << endl << endl;
 }
 
 // add a single or multiple nodes
