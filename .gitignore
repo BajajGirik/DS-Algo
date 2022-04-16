@@ -1,2 +1,11 @@
 *.out
-.DS_Store
+**/.DS_Store
+**/input.txt
+**/output.txt
+**/a
+**/b
+**/c
+**/d
+**/e
+**/a.out
+**/.vscode/settings.json
