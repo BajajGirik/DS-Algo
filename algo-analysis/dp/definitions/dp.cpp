@@ -118,29 +118,31 @@ int zero_one_knapsack(int w[], int p[], int n, int W) {
 	return dp[n][W];
 }
 
-void huffman_encoding_tree_parser(struct Node * root, struct HuffmanCodes * hc, char str[HUFFMAN_CODE_SIZE], int n, char key) {
-	static int index = 0;
+void huffman_encoding_tree_parser(Node * root, HuffmanCodes * hc, char str[HUFFMAN_CODE_SIZE], int n, char key) {
+	static int index = 0, total = 0;
 
 	if(root == NULL) {
-		str[n] = '\n';
+		str[n-1] = '\0';
 		hc[index].ch = key;
 		strcpy(hc[index].str, str);
-		++index;
+		if(total&1) {
+			++index;
+		}
+		++total;
+		return;
 	}
 	
 	str[n] = '0';
-	huffman_encoding_tree_parser(root->left, hc, str, n+1, root->data);
+	huffman_encoding_tree_parser(root->left, hc, str, n+1, root->ch);
 	str[n] = '1';
-	huffman_encoding_tree_parser(root->right, hc, str, n+1, root->data);
+	huffman_encoding_tree_parser(root->right, hc, str, n+1, root->ch);
 }
 
-struct HuffmanCodes * huffman_encoding(char * s, int n) {
+HuffmanCodes * huffman_encoding(std::string s, int n) {
 	int freq[26] = {0};
-
 	for(int i = 0; i < n; ++i) {
 		++freq[s[i] - 'a'];
 	}
-
 
 	int count = 0;
 	for(int i = 0; i < 26; ++i) {
@@ -149,16 +151,15 @@ struct HuffmanCodes * huffman_encoding(char * s, int n) {
 		}
 	}
 
-
-	struct Node *p[count];
+	Node **p = new Node*[count];
 
 	int index = 0;
-	for(int i = 0; i < 26; ++i) {
+	for(int i = 0; i < 26 and index < count; ++i) {
 		if(freq[i] != 0) {
-			p[index]->ch = 'a' + i;
-			p[index]->data = freq[i];
-			p[index]->left = NULL;
-			p[index]->right = NULL;
+			Node *temp = new Node;	
+			temp->ch = ('a' + i);
+			temp->data = freq[i];
+			p[index] = temp;
 			++index;
 		}
 	}
@@ -166,13 +167,13 @@ struct HuffmanCodes * huffman_encoding(char * s, int n) {
 	std::sort(p, p + count, sortLeafNodes);
 
 	for(int i = 0; i < count - 1; ++i) {
-		struct Node *temp = new Node();
+		Node *temp = new Node;
 		temp->data = p[i]->data + p[i+1]->data;
 		temp->left = p[i];
 		temp->right = p[i+1];
 
 		int temp_index = i+2;
-		while(temp->data > p[temp_index]->data) {
+		while(temp_index < count and temp->data > p[temp_index]->data) {
 			p[temp_index-1] = p[temp_index];
 			++temp_index;
 		}
@@ -180,9 +181,9 @@ struct HuffmanCodes * huffman_encoding(char * s, int n) {
 		p[temp_index - 1] = temp;
 	}
 
-	struct HuffmanCodes hc[count];
+	HuffmanCodes *hc = new HuffmanCodes[count];
 	char str[HUFFMAN_CODE_SIZE];
-	huffman_encoding_tree_parser(p[n-1], hc, str, 0);
+	huffman_encoding_tree_parser(p[count-1], hc, str);
 
 	return hc;
 }

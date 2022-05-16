@@ -11,7 +11,9 @@ struct knapsack {
 struct Node {
 	int data;
 	char ch;
-	struct Node *left, *right;
+	Node *left, *right;
+
+	Node();
 };
 
 struct HuffmanCodes {

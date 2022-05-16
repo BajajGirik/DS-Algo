@@ -8,6 +8,14 @@ void file_io(char * inputFilePath, char * outputFilePath) {
 	freopen(outputFilePath, "w", stdout);
 }
 
+Node::Node() {
+	int data = 0;
+	ch = '$';
+	left = NULL;
+	right = NULL;
+}
+
+
 int ** matrix_multiplication(int ** m1, int ** m2, int r1, int c1, int r2, int c2) {
 	int ** res = new int*[r1];	
 
@@ -32,12 +40,12 @@ bool fractionalKnapsackCmp(const struct knapsack & s1, const struct knapsack & s
 	return (s1.p/s1.w - s2.p/s2.w);
 }
 
-bool sortLeafNodes(const struct Node *n1, const struct Node * n2) {
+bool sortLeafNodes(const Node *n1, const Node * n2) {
 	return (n1->data - n2->data);
 }
 
-void print_huffman_codes(struct HuffmanCodes hc[], int n) {
+void print_huffman_codes(HuffmanCodes hc[], int n) {
 	for(int i = 0; i < n; ++i) {
-		std::cout << hc[i].ch << ": " << hc[i].str;
+		std::cout << hc[i].ch << ": " << hc[i].str << "\n";
 	}
 }
