@@ -1,0 +1,14 @@
+class Solution {
+public:
+    int removeDuplicates(vector<int>& nums) {
+        int cindex = 0;
+        
+        for(int i = 0; i < nums.size(); ++i) {
+            int key = nums[i];
+            while(i+1 < nums.size() and nums[i+1] == key) ++i;
+            nums[cindex++] = key;
+        }
+        
+        return cindex;
+    }
+};
