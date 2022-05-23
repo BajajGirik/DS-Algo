@@ -21,7 +21,7 @@ struct HuffmanCodes {
 	char str[HUFFMAN_CODE_SIZE];
 };
 
-void file_io(char *, char *);
+void file_io(const char *, const char *);
 int ** matrix_multiplication(int **, int **, int, int, int, int);
 bool fractionalKnapsackCmp(const struct knapsack &, const struct knapsack &);
 bool sortLeafNodes(const struct Node *, const struct Node *);

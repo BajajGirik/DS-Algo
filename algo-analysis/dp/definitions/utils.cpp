@@ -1,7 +1,7 @@
 #include "../headers/utils.h"
 #include <iostream>
 
-void file_io(char * inputFilePath, char * outputFilePath) {
+void file_io(const char * inputFilePath, const char * outputFilePath) {
 	std::ios_base::sync_with_stdio(false);
 	std::cin.tie(NULL); std::cout.tie(NULL);
 	freopen(inputFilePath, "r", stdin);

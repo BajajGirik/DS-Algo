@@ -30,20 +30,20 @@ int matrix_chain_multiplication(int d[], int n) {
     return m[1][n - 1];
 }
 
-char * longest_common_subsequence(char *s1, char *s2, int n1, int n2) {
-	int dp[n1][n2];
+std::string longest_common_subsequence(std::string s1, std::string s2, int n1, int n2) {
+	int dp[n1+1][n2+1];
 	
-	for(int i = 0; i < n1; ++i) {
+	for(int i = 0; i <= n1; ++i) {
 		dp[i][0] = 0;
 	}
 	
-	for(int i = 0; i < n2; ++i) {
+	for(int i = 0; i <= n2; ++i) {
 		dp[0][i] = 0;
 	}
 
 	for(int i = 1; i <= n1; ++i) {
 		for(int j = 1; j <= n2; ++j) {
-			if(s1[i] == s2[j]) {
+			if(s1[i-1] == s2[j-1]) {
 				dp[i][j] = dp[i - 1][j - 1] + 1;
 			} else {
 				dp[i][j] = std::max(dp[i-1][j], dp[i][j-1]);
@@ -51,10 +51,8 @@ char * longest_common_subsequence(char *s1, char *s2, int n1, int n2) {
 		}
 	}
 
-
 	int i = n1, j = n2, len = dp[n1][n2];
-	char s[len];
-	--len;
+	std::string s;
 
 	while(i >= 1 and j >= 1 and dp[i][j] != 0) {
 		if(dp[i][j] == dp[i-1][j])
@@ -62,7 +60,9 @@ char * longest_common_subsequence(char *s1, char *s2, int n1, int n2) {
 		else if(dp[i][j] == dp[i][j-1])
 			--j;
 		else {
-			s[len--] = s1[i-1];
+			s = s1[i-1] + s;
+			--i;
+			--j;
 		}
 	}
 
@@ -82,12 +82,12 @@ int fractionalKnapsack(int w[], int p[], int n, int W) {
 	int totalProfit = 0;
 	for(int i = n-1; i >= 0; --i) {
 		if(totalWeight + knap[i].w >= W) {
-			totalProfit += (W-totalWeight)*knap[i].p;
+			totalProfit += (W-totalWeight) * knap[i].p / knap[i].w;
 			totalWeight = W;
 			break;
 		}
 
-		totalProfit += knap[i].w * knap[i].p;
+		totalProfit += knap[i].p;
 		totalWeight += knap[i].w;
 	}
 
@@ -102,15 +102,15 @@ int zero_one_knapsack(int w[], int p[], int n, int W) {
 	}
 	
 	for(int i = 0; i <= W; ++i) {
-		dp[i][0] = 0;
+		dp[0][i] = 0;
 	}
 
 	for(int i = 1; i <= n; ++i) {
 		for(int j = 1; j <= W; ++j) {
-			if(j < w[i]) {
+			if(j < w[i-1]) {
 				dp[i][j] = dp[i-1][j];
 			} else {
-				dp[i][j] = std::max(dp[i-1][j-w[i]] + p[i], dp[i-1][j]);
+				dp[i][j] = std::max(dp[i-1][j-w[i-1]] + p[i-1], dp[i-1][j]);
 			}
 		}
 	}
